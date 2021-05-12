@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const postRoute = require('./routes/posts');
 
 //Import Routes
 const authRoute = require('./routes/auth');
@@ -22,6 +23,8 @@ mongoose.connect(process.env.mongoose_url,{
 app.use(express.json());
 
 app.use('/', authRoute );
+
+app.use('/posts', postRoute)
 
 app.listen(PORT, (req, res) => {
     console.log(`${PORT} server up and running`);
